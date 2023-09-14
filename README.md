@@ -16,7 +16,7 @@
       - [Neighbour-type constraints](#neighbour-type-constraints)
       - [Fact-type constraint](#fact-type-constraint)
     - [Einstein Puzzle CNF](#einstein-puzzle-cnf)
-  - [SAT Solver](#sat-solver)
+  - [DPLL Solver](#dpll-solver)
 - [Execute](#execute)
   - [Pre-requisites](#pre-requisites)
   - [Build and Run](#build-and-run)
@@ -537,9 +537,13 @@ Using the above ideas, the Einstein Puzzle was encoded in CNF form in DIMACS for
 
 [*EinsteinCNF.cpp*](/src/EinsteinCNF.cpp) contains the code that was used to encode the Einstein Puzzle in DIMACS format.
 
-## SAT Solver
+## DPLL Solver
 
 The file [*SAT.cpp*](/src/SAT.cpp) contains the code for the DPLL solver which uses the random heuristic and the two-clause heuristic.
+
+***Random Heuristic*** - All choices (propositions and truth values) are resolved randomly with a uniform distribution.
+
+***Two-Clause Heuristic*** - Choose propositions with maximum occurrences in 2-clauses, i.e., clauses with two literals, and break ties randomly. Truth value assignment is done randomly.
 
 # Execute
 
@@ -562,7 +566,10 @@ To build and run the [*EinsteinCNF.cpp*](/src/EinsteinCNF.cpp) program to see ho
 
 This will run the [*EinsteinCNF.cpp*](/src/EinsteinCNF.cpp) file and store the output in a text file called *EinsteinCNFOutput.txt* in the same folder location.
 
-***Note:** The *EinsteinCNFOutput.txt* file will contain the encoding of the problem in DIMACS CNF format towards the end of the file. This part can be copied to a new file to create a DIMACS file for the problem.*
+**Notes:**
+1. The *EinsteinCNFOutput.txt* file will contain the encoding of the problem in DIMACS CNF format towards the end of the file. This part can be copied to a new file to create a DIMACS file for the problem.*
+
+2. The code inside the `PrintClause()` function in this file can be uncommented for more information about the clauses being generated for each constraint.
 
 ### SAT.cpp
 

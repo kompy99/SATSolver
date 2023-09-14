@@ -107,7 +107,7 @@ private:
 
         int propSelected = SelectProp(clauses, assignments, numLiterals);
         int truthValueAssignment = SelectRandomTruthValueAssignment();
-
+        
         // std::string newBranchPath = branchPath + " L";
         int propAssigned = propSelected * truthValueAssignment;
 
@@ -141,8 +141,8 @@ private:
     int SelectRandomTruthValueAssignment()
     {
         int truthValues[] = {-1, 1};
-        int randomIndex = GenerateRandomNumber(0, 1);
-        return truthValues[randomIndex];
+        int randomIndex = GenerateRandomNumber(1, 100);
+        return truthValues[randomIndex%2];
     }
 
     int SelectProp(std::vector<std::set<int>> clauses, std::vector<int> assignments, int numLiterals)

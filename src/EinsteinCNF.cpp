@@ -30,14 +30,14 @@ const int numHouses = 5;
 
 void PrintClause(vector<int> clause)
 {
-    cout << endl;
+    // cout << endl;
 
-    for (int i = 0; i < clause.size(); i++)
-    {
-        cout << clause[i] << " ";
-    }
+    // for (int i = 0; i < clause.size(); i++)
+    // {
+    //     cout << clause[i] << " ";
+    // }
 
-    cout<<"0";
+    // cout<<"0";
 }
 
 vector<vector<int>> BaseContraintsGeneration(vector<string> propertyKeys, map<pair<int, string>, int> literalMap)
@@ -325,17 +325,19 @@ int main()
     clauses = GenerateLeftOfConstraint(ColorKeys[2], ColorKeys[1], literalMap);
     AllClauses.insert(AllClauses.end(), begin(clauses), end(clauses));
 
-    cout << "\n\nPrinting all clauses \n\n";
+    cout << "\n\n--------- Clauses in DIMACS format --------- \n\n";
 
     cout << "p cnf 125 " << AllClauses.size();
 
-    // for (int i = 0; i < AllClauses.size(); i++)
-    // {
-    //     cout << "\n";
-    //     for (int j = 0; j < AllClauses[i].size(); j++)
-    //     {
-    //         cout << AllClauses[i][j] << " ";
-    //     }
-    //     cout << "0";
-    // }
+    for (int i = 0; i < AllClauses.size(); i++)
+    {
+        cout << "\n";
+        for (int j = 0; j < AllClauses[i].size(); j++)
+        {
+            cout << AllClauses[i][j] << " ";
+        }
+        cout << "0";
+    }
+
+    cout<<endl;
 }

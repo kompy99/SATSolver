@@ -506,13 +506,13 @@ This just means that (3, bvg_m) has to be True. So this can be added as a constr
 
 ### Einstein Puzzle CNF
 
-Using the above ideas, the Einstein Puzzle was encoded in CNF form in DIMACS format and stored in the *EinsteinDimacs.txt* file.
+Using the above ideas, the Einstein Puzzle was encoded in CNF form in DIMACS format and stored in the [*EinsteinDimacs.txt*](/src/EinsteinDimacs.txt) file.
 
-*EinsteinCNF.cpp* contains the code that was used to encode the Einstein Puzzle in DIMACS format.
+[*EinsteinCNF.cpp*](/src/EinsteinCNF.cpp) contains the code that was used to encode the Einstein Puzzle in DIMACS format.
 
 ## SAT Solver
 
-The file *SAT.cpp* contains the code for the DPLL solver which uses the random heuristic and the two-clause heuristic.
+The file [*SAT.cpp*](/src/SAT.cpp) contains the code for the DPLL solver which uses the random heuristic and the two-clause heuristic.
 
 # Execute
 
@@ -524,16 +524,16 @@ The file *SAT.cpp* contains the code for the DPLL solver which uses the random h
 
 ### EinsteinCNF.cpp
 
-To build and run the *EinsteinCNF.cpp* program to see how the Einstein Puzzle is encoded into CNF format: 
+To build and run the [*EinsteinCNF.cpp*](/src/EinsteinCNF.cpp) program to see how the Einstein Puzzle is encoded into CNF format: 
 
-1. Download the *EinsteinCNF.cpp* file to desired location.
+1. Download the [*EinsteinCNF.cpp*](/src/EinsteinCNF.cpp) file to desired location.
 2. Open terminal and navigate to location where file was downloaded.
 3. Run the following commands in terminal.
 
         $ g++ --std=c++14 ./EinsteinCNF.cpp
         $ ./a.out > EinsteinCNFOutput.txt
 
-This will run the *EinsteinCNF.cpp* file and store the output in a text file called *EinsteinCNFOutput.txt* in the same folder location.
+This will run the [*EinsteinCNF.cpp*](/src/EinsteinCNF.cpp) file and store the output in a text file called *EinsteinCNFOutput.txt* in the same folder location.
 
 ***Note:** The *EinsteinCNFOutput.txt* file will contain the encoding of the problem in DIMACS CNF format towards the end of the file. This part can be copied to a new file to create a DIMACS file for the problem.*
 
@@ -541,7 +541,7 @@ This will run the *EinsteinCNF.cpp* file and store the output in a text file cal
 
 To build and run the SAT solver on the Einstein Puzzle DIMACS file: 
 
-1. Download the *SAT.cpp* and *EinsteinDimacs.txt* files to desired location.
+1. Download the [*SAT.cpp*](/src/SAT.cpp) and [*EinsteinDimacs.txt*](/src/EinsteinDimacs.txt) files to desired location.
 2. Open terminal and navigate to location where files were downloaded.
 3. Run the following commands in terminal.
 

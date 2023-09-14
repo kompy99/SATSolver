@@ -1,3 +1,30 @@
+# Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [SATSolver](#satsolver)
+  - [Einstein Puzzle](#einstein-puzzle)
+  - [Encoding of the Einstein Puzzle](#encoding-of-the-einstein-puzzle)
+    - [Proposition List](#proposition-list)
+      - [Variables for House - Color](#variables-for-house---color)
+      - [Variables for House - Nationality](#variables-for-house---nationality)
+      - [Variables for House - Beverage](#variables-for-house---beverage)
+      - [Variables for House - Cigar](#variables-for-house---cigar)
+      - [Variables for House - Pet](#variables-for-house---pet)
+    - [Constraints Generation](#constraints-generation)
+      - [Base Constraints](#base-constraints)
+      - [Implication-type constraints](#implication-type-constraints)
+      - [Neighbour-type constraints](#neighbour-type-constraints)
+      - [Fact-type constraint](#fact-type-constraint)
+    - [Einstein Puzzle CNF](#einstein-puzzle-cnf)
+  - [SAT Solver](#sat-solver)
+- [Execute](#execute)
+  - [Pre-requisites](#pre-requisites)
+  - [Build and Run](#build-and-run)
+    - [EinsteinCNF.cpp](#einsteincnfcpp)
+    - [SAT.cpp](#satcpp)
+- [Solution](#solution)
+
+
 # SATSolver
 This is a repository containing a DPLL implementation of a SAT solver which uses different types of decision heuristics.
 

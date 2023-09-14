@@ -551,15 +551,15 @@ To build and run the SAT solver on the Einstein Puzzle DIMACS file:
 4. Enter input as per prompts.
 
 
-        Enter name of DIMACS file : 
-        > EinsteinDimacs.txt
+        > Enter name of DIMACS file : 
+          EinsteinDimacs.txt
 
         
-        No of propositions - 125
-        No of clauses - 793
+        > No of propositions - 125
+        > No of clauses - 793
 
-        Select heuristic (1 - Random, 2 - Two-Clause):
-        > 2
+        > Select heuristic (1 - Random, 2 - Two-Clause):
+          2
 
 The program will output:
 1. **If problem is satisfiable:**  

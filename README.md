@@ -1,3 +1,5 @@
+This project was done as part of the ***CS-8803: Logic in Computer Science*** course at Georgia Tech.
+
 **Varun Komperla  
 vkomperla3@gatech.edu  
 GT ID: xx3926404**
@@ -35,8 +37,6 @@ I confirm that I have adhered to the Georgia Tech honor code.
 
 # SATSolver
 This is a repository containing a DPLL implementation of a SAT solver which uses different types of decision heuristics.
-
-This project was done as part of the ***CS-8803: Logic in Computer Science*** course at Georgia Tech. 
 
 The objectives of this project was as follows:
 1) Encode the _*Einstein Puzzle*_ as a SAT problem in CNF form.

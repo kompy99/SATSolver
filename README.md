@@ -1,3 +1,9 @@
+**Varun Komperla  
+vkomperla3@gatech.edu  
+GT ID: xx3926404**
+
+I confirm that I have adhered to the Georgia Tech honor code.
+
 # Table of Contents
 
 - [Table of Contents](#table-of-contents)
@@ -5,11 +11,11 @@
   - [Einstein Puzzle](#einstein-puzzle)
   - [Encoding of the Einstein Puzzle](#encoding-of-the-einstein-puzzle)
     - [Proposition List](#proposition-list)
-      - [Variables for House - Color](#variables-for-house---color)
-      - [Variables for House - Nationality](#variables-for-house---nationality)
-      - [Variables for House - Beverage](#variables-for-house---beverage)
-      - [Variables for House - Cigar](#variables-for-house---cigar)
-      - [Variables for House - Pet](#variables-for-house---pet)
+      - [Variables for House-Color combinations](#variables-for-house-color-combinations)
+      - [Variables for House-Nationality combinations](#variables-for-house-nationality-combinations)
+      - [Variables for House-Beverage combinations](#variables-for-house-beverage-combinations)
+      - [Variables for House-Cigar combinations](#variables-for-house-cigar-combinations)
+      - [Variables for House-Pet combinations](#variables-for-house-pet-combinations)
     - [Constraints Generation](#constraints-generation)
       - [Base Constraints](#base-constraints)
       - [Implication-type constraints](#implication-type-constraints)
@@ -22,7 +28,9 @@
   - [Build and Run](#build-and-run)
     - [EinsteinCNF.cpp](#einsteincnfcpp)
     - [SAT.cpp](#satcpp)
+  - [Output](#output)
 - [Solution](#solution)
+
 
 
 # SATSolver
@@ -75,330 +83,58 @@ house)
 ### Proposition List
 The following is the list of variables, where each variable is represented as a number:
 
-#### Variables for House - Color
-
-(1, clr_r) - 1
-
-(1, clr_w) - 2
-
-(1, clr_g) - 3
-
-(1, clr_y) - 4
-
-(1, clr_b) - 5
-
-
-(2, clr_r) - 6
-
-(2, clr_w) - 7
-
-(2, clr_g) - 8
-
-(2, clr_y) - 9
-
-(2, clr_b) - 10
-
-
-(3, clr_r) - 11
-
-(3, clr_w) - 12
-
-(3, clr_g) - 13
-
-(3, clr_y) - 14
-
-(3, clr_b) - 15
-
-
-(4, clr_r) - 16
-
-(4, clr_w) - 17
-
-(4, clr_g) - 18
-
-(4, clr_y) - 19
-
-(4, clr_b) - 20
-
-
-(5, clr_r) - 21
-
-(5, clr_w) - 22
-
-(5, clr_g) - 23
-
-(5, clr_y) - 24
-
-(5, clr_b) - 25
-
-#### Variables for House - Nationality
-
-(1, ntn_B) - 26
-
-(1, ntn_S) - 27
-
-(1, ntn_D) - 28
-
-(1, ntn_N) - 29
-
-(1, ntn_G) - 30
-
-
-(2, ntn_B) - 31
-
-(2, ntn_S) - 32
-
-(2, ntn_D) - 33
-
-(2, ntn_N) - 34
-
-(2, ntn_G) - 35
-
-
-(3, ntn_B) - 36
-
-(3, ntn_S) - 37
-
-(3, ntn_D) - 38
-
-(3, ntn_N) - 39
-
-(3, ntn_G) - 40
-
-
-(4, ntn_B) - 41
-
-(4, ntn_S) - 42
-
-(4, ntn_D) - 43
-
-(4, ntn_N) - 44
-
-(4, ntn_G) - 45
-
-
-(5, ntn_B) - 46
-
-(5, ntn_S) - 47
-
-(5, ntn_D) - 48
-
-(5, ntn_N) - 49
-
-(5, ntn_G) - 50
-
-#### Variables for House - Beverage
-
-(1, bvg_t) - 51
-
-(1, bvg_c) - 52
-
-(1, bvg_m) - 53
-
-(1, bvg_b) - 54
-
-(1, bvg_w) - 55
-
-
-(2, bvg_t) - 56
-
-(2, bvg_c) - 57
-
-(2, bvg_m) - 58
-
-(2, bvg_b) - 59
-
-(2, bvg_w) - 60
-
-
-(3, bvg_t) - 61
-
-(3, bvg_c) - 62
-
-(3, bvg_m) - 63
-
-(3, bvg_b) - 64
-
-(3, bvg_w) - 65
-
-
-(4, bvg_t) - 66
-
-(4, bvg_c) - 67
-
-(4, bvg_m) - 68
-
-(4, bvg_b) - 69
-
-(4, bvg_w) - 70
-
-
-(5, bvg_t) - 71
-
-(5, bvg_c) - 72
-
-(5, bvg_m) - 73
-
-(5, bvg_b) - 74
-
-(5, bvg_w) - 75
-
-#### Variables for House - Cigar
-
-(1, cig_p) - 76
-
-(1, cig_d) - 77
-
-(1, cig_b) - 78
-
-(1, cig_c) - 79
-
-(1, cig_s) - 80
-
-
-(2, cig_p) - 81
-
-(2, cig_d) - 82
-
-(2, cig_b) - 83
-
-(2, cig_c) - 84
-
-(2, cig_s) - 85
-
-
-(3, cig_p) - 86
-
-(3, cig_d) - 87
-
-(3, cig_b) - 88
-
-(3, cig_c) - 89
-
-(3, cig_s) - 90
-
-
-(4, cig_p) - 91
-
-(4, cig_d) - 92
-
-(4, cig_b) - 93
-
-(4, cig_c) - 94
-
-(4, cig_s) - 95
-
-
-(5, cig_p) - 96
-
-(5, cig_d) - 97
-
-(5, cig_b) - 98
-
-(5, cig_c) - 99
-
-(5, cig_s) - 100
-
-#### Variables for House - Pet
-
-(1, pet_c) - 101
-
-(1, pet_h) - 102
-
-(1, pet_d) - 103
-
-(1, pet_f) - 104
-
-(1, pet_b) - 105
-
-
-(2, pet_c) - 106
-
-(2, pet_h) - 107
-
-(2, pet_d) - 108
-
-(2, pet_f) - 109
-
-(2, pet_b) - 110
-
-
-(3, pet_c) - 111
-
-(3, pet_h) - 112
-
-(3, pet_d) - 113
-
-(3, pet_f) - 114
-
-(3, pet_b) - 115
-
-
-(4, pet_c) - 116
-
-(4, pet_h) - 117
-
-(4, pet_d) - 118
-
-(4, pet_f) - 119
-
-(4, pet_b) - 120
-
-
-(5, pet_c) - 121
-
-(5, pet_h) - 122
-
-(5, pet_d) - 123
-
-(5, pet_f) - 124
-
-(5, pet_b) - 125
-
-Mapping of keys:
-
-**Color keys**
-
-*clr_r* - Red  
-*clr_w* - White   
-*clr_g* - Green  
-*clr_y* - Yellow  
-*clr_b* - Blue  
-
-**Nationality Keys**
-
-*ntn_B* - Brit  
-*ntn_S* - Swede  
-*ntn_D* - Dane  
-*ntn_N* - Norwegian  
-*ntn_G* - German  
-
-**BeverageKeys**
-
-*bvg_t* - Tea  
-*bvg_c* - Coffee  
-*bvg_m* - Milk  
-*bvg_b* - Beer  
-*bvg_w* - Water  
-
-**CigarKeys**
-
-*cig_p* - Pall Mall  
-*cig_d* - Dunhill  
-*cig_b* - Blends  
-*cig_c* - Prince  
-*cig_s* - Bluemasters  
-
-**PetKeys**
-
-*pet_c* - Cats  
-*pet_h* - Horse  
-*pet_d* - Dogs  
-*pet_f* - Fish  
-*pet_b* - Birds  
-
-
-For each house, we have a boolean variable to represent each property of the house (Color, Beverage, Nationality, Cigar, Pet).
+#### Variables for House-Color combinations
+
+| (House, Red) | (House, White) | (House, Green) | (House, Yellow) | (House, Blue) |
+|----------------|----------------|----------------|----------------|----------------| 
+|(1, clr_r) - 1 | (1, clr_w) - 2 | (1, clr_g) - 3 | (1, clr_y) - 4 | (1, clr_b) - 5 |  
+|(2, clr_r) - 6 | (2, clr_w) - 7 | (2, clr_g) - 8 | (2, clr_y) - 9 | (2, clr_b) - 10 |  
+|(3, clr_r) - 11 | (3, clr_w) - 12 | (3, clr_g) - 13 | (3, clr_y) - 14 | (3, clr_b) - 15 |  
+|(4, clr_r) - 16 | (4, clr_w) - 17 | (4, clr_g) - 18 | (4, clr_y) - 19 | (4, clr_b) - 20 |  
+|(5, clr_r) - 21 | (5, clr_w) - 22 | (5, clr_g) - 23 | (5, clr_y) - 24 | (5, clr_b) - 25 |
+
+#### Variables for House-Nationality combinations
+
+| (House, Brit) | (House, Swede) | (House, Dane) | (House, Norwegian) | (House, German) |
+|----------------|----------------|----------------|----------------|----------------| 
+|(1, ntn_B) - 26 | (1, ntn_S) - 27 | (1, ntn_D) - 28 | (1, ntn_N) - 29 | (1, ntn_G) - 30 |  
+|(2, ntn_B) - 31 | (2, ntn_S) - 32 | (2, ntn_D) - 33 | (2, ntn_N) - 34 | (2, ntn_G) - 35 |  
+|(3, ntn_B) - 36 | (3, ntn_S) - 37 | (3, ntn_D) - 38 | (3, ntn_N) - 39 | (3, ntn_G) - 40 |  
+|(4, ntn_B) - 41 | (4, ntn_S) - 42 | (4, ntn_D) - 43 | (4, ntn_N) - 44 | (4, ntn_G) - 45 |  
+|(5, ntn_B) - 46 | (5, ntn_S) - 47 | (5, ntn_D) - 48 | (5, ntn_N) - 49 | (5, ntn_G) - 50 |
+
+#### Variables for House-Beverage combinations
+
+| (House, Red) | (House, White) | (House, Green) | (House, Yellow) | (House, Blue) |
+|----------------|----------------|----------------|----------------|----------------| 
+|(1, clr_r) - 1 | (1, clr_w) - 2 | (1, clr_g) - 3 | (1, clr_y) - 4 | (1, clr_b) - 5 |  
+|(2, clr_r) - 6 | (2, clr_w) - 7 | (2, clr_g) - 8 | (2, clr_y) - 9 | (2, clr_b) - 10 |  
+|(3, clr_r) - 11 | (3, clr_w) - 12 | (3, clr_g) - 13 | (3, clr_y) - 14 | (3, clr_b) - 15 |  
+|(4, clr_r) - 16 | (4, clr_w) - 17 | (4, clr_g) - 18 | (4, clr_y) - 19 | (4, clr_b) - 20 |  
+|(5, clr_r) - 21 | (5, clr_w) - 22 | (5, clr_g) - 23 | (5, clr_y) - 24 | (5, clr_b) - 25 |
+
+#### Variables for House-Cigar combinations
+
+| (House, Pall Mall) | (House, Dunhill) | (House, Blends) | (House, Prince) | (House, Bluemasters) |
+|--------------------|------------------|-----------------|-----------------|----------------------|
+|(1, cig_p) - 76 | (1, cig_d) - 77 | (1, cig_b) - 78 | (1, cig_c) - 79 | (1, cig_s) - 80 |
+|(2, cig_p) - 81 | (2, cig_d) - 82 | (2, cig_b) - 83 | (2, cig_c) - 84 | (2, cig_s) - 85 |
+|(3, cig_p) - 86 | (3, cig_d) - 87 | (3, cig_b) - 88 | (3, cig_c) - 89 | (3, cig_s) - 90 |
+|(4, cig_p) - 91 | (4, cig_d) - 92 | (4, cig_b) - 93 | (4, cig_c) - 94 | (4, cig_s) - 95 |
+|(5, cig_p) - 96 | (5, cig_d) - 97 | (5, cig_b) - 98 | (5, cig_c) - 99 | (5, cig_s) - 100|
+
+#### Variables for House-Pet combinations
+
+| (House, Cat)  | (House, Horse) | (House, Dogs) | (House, Fish) |(House, Birds) |
+| ----------| ----------|---------  |---------- |---------------|
+|(1, pet_c) - 101 | (1, pet_h) - 102 | (1, pet_d) - 103 | (1, pet_f) - 104 | (1, pet_b) - 105|
+|(2, pet_c) - 106 | (2, pet_h) - 107 | (2, pet_d) - 108 | (2, pet_f) - 109 | (2, pet_b) - 110|
+|(3, pet_c) - 111 | (3, pet_h) - 112 | (3, pet_d) - 113 | (3, pet_f) - 114 | (3, pet_b) - 115|
+|(4, pet_c) - 116 | (4, pet_h) - 117 | (4, pet_d) - 118 | (4, pet_f) - 119 | (4, pet_b) - 120|
+|(5, pet_c) - 121 | (5, pet_h) - 122 | (5, pet_d) - 123 | (5, pet_f) - 124 | (5, pet_b) - 125|
+
+
+$\therefore \;$  For each house, we have a boolean variable to represent each property of the house (Color, Beverage, Nationality, Cigar, Pet).
 
 So, if the variable for *(1, clr_r)* is True
 
@@ -457,12 +193,24 @@ Given the variables for [houses-colors](#variables-for-house---color), we have t
 #### Implication-type constraints
 
 For example, one of the hints says that *"The Brit lives in the Red House"*. Let us call this an implication-type constraint.  
-This means that, for instance, if the variable for (3, ntn_b) is true, then the variable for (3, clr_r) also **has to be** true and vice-versa. 
+So, for instance, if the variable for (3, ntn_b) is true, then the variable for (3, clr_r) also **has to be** true and vice-versa. This means that if the man living in the 3rd house is the Brit, then the 3rd house **has to be** red in color, and vice versa.
 
 Another way of saying this is that, 
 
 If (3, ntn_b) = True,   
 Then (1, clr_r), (2,clr_r), (4, clr_r) and (5, clr_r) must be False.
+
+This means that if the man in the 3rd house is the Brit, then the 1st, 2nd, 4th and 5th houses **CANNOT** be red in color. This idea can be used to encode such a constraint in CNF form.
+
+With (3, ntn_b), (1, clr_r), (2,clr_r), (4, clr_r) and (5, clr_r) as the propositions, we have
+
+$\overline{((3, ntn\_b) \cap (1, clr\_r))} \cap \overline{((3, ntn\_b) \cap (2, clr\_r))} \cap \overline{((3, ntn\_b) \cap (4, clr\_r))} \cap \overline{((3, ntn\_b) \cap (5, clr\_r))}$
+
+Applying De Morgan's law, we get:
+
+$(\; \overline{(3, ntn\_b)} \; \cup \; \overline{(1, clr\_r)} \; ) \; \; \cap \; \;  (\; \overline{(3, ntn\_b)} \; \cup \; \overline{(2, clr\_r)} \; ) \; \; \cap \; \;  (\; \overline{(3, ntn\_b)} \; \cup \; \overline{(4, clr\_r)} \; ) \; \; \cap \; \;  (\; \overline{(3, ntn\_b)} \; \cup \; \overline{(5, clr\_r)} \; )$
+
+which is in CNF form.
 
 Using this idea, we can generate the following constraints (given the variables for [houses-colors](#variables-for-house---color) and [houses-nationalities](#variables-for-house---nationality)):
 
@@ -493,12 +241,26 @@ Using this idea, we can generate the following constraints (given the variables 
 
 For example, one of the hints says that *"The man who smokes Blends lives next to the one who keeps cats."*. Let us call this an neighbour-type constraint.
 
-This means that, for instance, if the variable for (2, cig_b) is true, then one of the variables - (1, pet_c) or (3, pet_c) also **has to be** true and vice-versa. 
+So, for instance, if the variable for (2, cig_b) is true, then one of the variables - (1, pet_c) or (3, pet_c) also **has to be** true and vice-versa. This means that if the man in the 2nd house smokes Blends, then either the man in the 1st house keeps cats, or the person in the 3rd house keeps cats.
 
 Another way of saying this is that, 
 
 If (2, cig_b) = True,   
 Then (4, pet_c), (5, pet_c) must be False.
+
+This means that if the man in the 2nd house smokes Blends, then the men in the 4th and 5th houses definitely DO NOT keep cats.
+
+Same is true other way around, where say the man in the 3rd house keeps cats, then the men in the 1st and 5th houses definitely DO NOT smoke blends. This idea can be used to encode such a constraint in CNF form.
+
+With (2, cig_b), (4, pet_c) and (5, pet_c) as propositions, we have:
+
+$\overline{((2, cig\_b) \cap (4, pet\_c))} \cap \overline{((2, cig\_b) \cap (5, pet\_c))}$
+
+Applying De Morgan's law, we get:
+
+$(\; \overline{(2, cig\_b)} \; \cup \; \overline{(4, pet\_c)} \; ) \; \; \cap \; \;  ( \; \overline{(2, cig\_b)} \; \cup \; \overline{(5, pet\_c)} \; )$
+
+which is in CNF form.
 
 Using this idea, we can generate the following constraints (given the variables for [houses-cigars](#variables-for-house---cigar) and [houses-pets](#variables-for-house---pet)):
 
@@ -533,7 +295,26 @@ This just means that (3, bvg_m) has to be True. So this can be added as a constr
 
 ### Einstein Puzzle CNF
 
-Using the above ideas, the Einstein Puzzle was encoded in CNF form in DIMACS format and stored in the [*EinsteinDimacs.txt*](/src/EinsteinDimacs.txt) file.
+ The above ideas can be applied to encode the base constraints and the hints of the Einstein puzzle in CNF.
+ 
+- The Brit lives in the red house $\implies$ *Implication-type constraint*
+- The Swede keeps dogs as pets $\implies$ *Implication-type constraint*
+- The Dane drinks tea $\implies$ *Implication-type constraint*
+- The green house is on the left of the white house $\implies$ *Neighbour-type constraint (with additional constraints to ensure left side only)*
+- The green house’s owner drinks coffee $\implies$ *Implication-type constraint*
+- The person who smokes Pall Mall rears birds $\implies$ *Implication-type constraint*
+- The owner of the yellow house smokes Dunhill $\implies$ *Implication-type constraint*
+- The man living in the center house drinks milk $\implies$ *Fact-type constraint*
+- The Norwegian lives in the first house $\implies$ *Fact-type constraint*
+- The man who smokes Blends lives next to the one who keeps cats $\implies$ *Neighbour-type constraint*
+- The man who keeps the horse lives next to the man who smokes Dunhill $\implies$ *Neighbour-type constraint*
+- The owner who smokes Bluemasters drinks beer $\implies$ *Implication-type constraint*
+- The German smokes Prince $\implies$ *Implication-type constraint*
+- The Norwegian lives next to the blue house $\implies$ *Neighbour-type constraint*
+- The man who smokes Blends has a neighbor who drinks water $\implies$ *Neighbour-type constraint*
+ 
+ The Einstein Puzzle was encoded in CNF form in DIMACS format and stored in the [*EinsteinDimacs.txt*](/src/EinsteinDimacs.txt) file.
+
 
 [*EinsteinCNF.cpp*](/src/EinsteinCNF.cpp) contains the code that was used to encode the Einstein Puzzle in DIMACS format.
 
@@ -595,6 +376,8 @@ To build and run the SAT solver on the Einstein Puzzle DIMACS file:
         > Select heuristic (1 - Random, 2 - Two-Clause):
           2
 
+## Output
+
 The program will output:
 1. **If problem is satisfiable:**  
    "SAT", followed by an assignment of the variables. A positive number indicates that the variable is assigned True, and a negative number indicates that the variable is assigned False.
@@ -604,10 +387,83 @@ The program will output:
 
 In both cases, the program will also output the number of splitting rule applications (or DPLL calls) that were made while attempting the solve the problem. The number of calls would depend on the size and form of the input as well as the decision heuristic selected.
 
+An example output obtained from running the SAT solver above on the Einstein DIMACS file is shown below.
+
+    Enter name of DIMACS file : 
+    EinsteinDimacs.txt
+
+
+    No of propositions - 125
+    No of clauses - 793
+
+
+    Select heuristic (1 - Random, 2 - Two-Clause):
+    1
+
+    SAT
+    -1 -2 -3 4 -5
+
+    -6 -7 -8 -9 10
+
+    11 -12 -13 -14 -15
+
+    -16 -17 18 -19 -20
+
+    -21 22 -23 -24 -25
+
+    -26 -27 -28 29 -30
+
+    -31 -32 33 -34 -35
+
+    36 -37 -38 -39 -40
+
+    -41 -42 -43 -44 45
+
+    -46 47 -48 -49 -50
+
+    -51 -52 -53 -54 55
+
+    56 -57 -58 -59 -60
+
+    -61 -62 63 -64 -65
+
+    -66 67 -68 -69 -70
+
+    -71 -72 -73 74 -75
+
+    -76 77 -78 -79 -80
+
+    -81 -82 83 -84 -85
+
+    86 -87 -88 -89 -90
+
+    -91 -92 -93 94 -95
+
+    -96 -97 -98 -99 100
+
+    101 -102 -103 -104 -105
+
+    -106 107 -108 -109 -110
+
+    -111 -112 -113 -114 115
+
+    -116 -117 -118 119 -120
+
+    -121 -122 123 -124 -125
+
+
+
+    ---------  PERFORMANCE  --------
+
+    Number of times splitting rule applied: 1647
+
+**Note:** The number for "splitting rule applied" will vary in each run as there is some randomness involved for the heuristics.
 
 # Solution
 
 This section describes the solution to the Einstein puzzle that was obtained using the DPLL SAT solver with both heuristics.
+
+Using the assignments obtained (shown in the [Output](#output) section), we arrive at the solution to the puzzle:
 
 | House 1   | House 2   | House 3   | House 4   | House 5       |
 | ----------| ----------|---------  |---------- |---------------|
@@ -615,5 +471,5 @@ This section describes the solution to the Einstein puzzle that was obtained usi
 | Norwegian | Dane      | Brit      | German    | Swede         |
 | Water     | Tea       | Milk      | Coffee    | Beer          |
 | Dunhill   | Blends    | Pall Mall | Prince    | Bluemasters   |
-| Cat       | Horse     | Birds     | Fish      | Dogs          |
+| Cats      | Horse     | Birds     | Fish      | Dogs          |
 

@@ -1,5 +1,3 @@
-This project was done as part of the ***CS-8803: Logic in Computer Science*** course at Georgia Tech.
-
 **Varun Komperla  
 vkomperla3@gatech.edu  
 GT ID: xx3926404**
@@ -37,6 +35,8 @@ I confirm that I have adhered to the Georgia Tech honor code.
 
 # SATSolver
 This is a repository containing a DPLL implementation of a SAT solver which uses different types of decision heuristics.
+
+This project was done as part of the ***CS-8803: Logic in Computer Science*** course at Georgia Tech. 
 
 The objectives of this project was as follows:
 1) Encode the _*Einstein Puzzle*_ as a SAT problem in CNF form.
@@ -105,13 +105,13 @@ The following is the list of variables, where each variable is represented as a 
 
 #### Variables for House-Beverage combinations
 
-| (House, Red) | (House, White) | (House, Green) | (House, Yellow) | (House, Blue) |
-|----------------|----------------|----------------|----------------|----------------| 
-|(1, clr_r) - 1 | (1, clr_w) - 2 | (1, clr_g) - 3 | (1, clr_y) - 4 | (1, clr_b) - 5 |  
-|(2, clr_r) - 6 | (2, clr_w) - 7 | (2, clr_g) - 8 | (2, clr_y) - 9 | (2, clr_b) - 10 |  
-|(3, clr_r) - 11 | (3, clr_w) - 12 | (3, clr_g) - 13 | (3, clr_y) - 14 | (3, clr_b) - 15 |  
-|(4, clr_r) - 16 | (4, clr_w) - 17 | (4, clr_g) - 18 | (4, clr_y) - 19 | (4, clr_b) - 20 |  
-|(5, clr_r) - 21 | (5, clr_w) - 22 | (5, clr_g) - 23 | (5, clr_y) - 24 | (5, clr_b) - 25 |
+| (House, Tea) | (House, Coffee) | (House, Milk) | (House, Beer) | (House, Water) |
+|-----------------|----------------|----------------|----------------|----------------| 
+| (1, bvg_t) - 51 | (1, bvg_c) - 52 | (1, bvg_m) - 53 | (1, bvg_b) - 54 | (1, bvg_w) - 55 | 
+| (2, bvg_t) - 56 | (2, bvg_c) - 57 | (2, bvg_m) - 58 | (2, bvg_b) - 59 | (2, bvg_w) - 60 | 
+| (3, bvg_t) - 61 | (3, bvg_c) - 62 | (3, bvg_m) - 63 | (3, bvg_b) - 64 | (3, bvg_w) - 65 | 
+| (4, bvg_t) - 66 | (4, bvg_c) - 67 | (4, bvg_m) - 68 | (4, bvg_b) - 69 | (4, bvg_w) - 70 | 
+| (5, bvg_t) - 71 | (5, bvg_c) - 72 | (5, bvg_m) - 73 | (5, bvg_b) - 74 | (5, bvg_w) - 75 |
 
 #### Variables for House-Cigar combinations
 
@@ -133,8 +133,7 @@ The following is the list of variables, where each variable is represented as a 
 |(4, pet_c) - 116 | (4, pet_h) - 117 | (4, pet_d) - 118 | (4, pet_f) - 119 | (4, pet_b) - 120|
 |(5, pet_c) - 121 | (5, pet_h) - 122 | (5, pet_d) - 123 | (5, pet_f) - 124 | (5, pet_b) - 125|
 
-
-$\therefore \;$  For each house, we have a boolean variable to represent each property of the house (Color, Beverage, Nationality, Cigar, Pet).
+For each house, we have a boolean variable to represent each property of the house (Color, Beverage, Nationality, Cigar, Pet).
 
 So, if the variable for *(1, clr_r)* is True
 

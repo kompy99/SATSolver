@@ -4,7 +4,6 @@ GT ID: xx3926404
 GT Email: vkomperla3@gatech.edu
 */
 
-
 #include <vector>
 #include <set>
 #include <algorithm>
@@ -14,8 +13,11 @@ GT Email: vkomperla3@gatech.edu
 #include <fstream>
 #include <cstdlib>
 #include <map>
-#include <unordered_set>
+#include <chrono>
+#include <csignal>
+#include <ctime>
 #include <unordered_map>
+#include <unordered_set>
 
 enum HeuristicType
 {
@@ -47,61 +49,88 @@ public:
     {
         heuristic = selectedHeuristic;
     }
+    int DPLLCalls;
+    int clauseCount;
+    int literalCount;
 
     void SolveSAT(std::vector<std::set<int>> clauses, int numLiterals)
     {
         std::vector<int> assignments, finalAssignments;
 
         DPLLCalls = 0;
+        clauseCount = clauses.size();
+        literalCount = numLiterals;
+
+        std::chrono::_V2::system_clock::time_point start = std::chrono::high_resolution_clock::now();
+
         finalAssignments = DPLL(clauses, assignments, numLiterals);
+
+        // Get the current time after executing the code
+        std::chrono::_V2::system_clock::time_point end = std::chrono::high_resolution_clock::now();
+
+        // Calculate the duration it took to execute the code
+        auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+
         std::vector<bool> variableAssignments(numLiterals, false);
 
         if (!finalAssignments.empty())
         {
+            // std::cout << std::endl
+            //           << "SAT" << std::endl;
+
+            // for (int i = 0; i < finalAssignments.size(); i++)
+            // {
+            //     variableAssignments[abs(finalAssignments[i]) - 1] = (finalAssignments[i] > 0);
+            // }
+
+            // for (int i = 0; i < variableAssignments.size(); i++)
+            // {
+            //     if (variableAssignments[i])
+            //     {
+            //         std::cout << " " << (i + 1);
+            //     }
+            //     else
+            //     {
+            //         std::cout << " " << -1 * (i + 1);
+            //     }
+
+            //     if ((i + 1) % 5 == 0)
+            //     {
+            //         std::cout << "\n\n";
+            //     }
+            // }
+
+            std::time_t currentTime = std::time(0);
+
+            // Convert the current time to a string
+            std::string currentTimeString = std::ctime(&currentTime);
+
             std::cout << std::endl
-                      << "SAT" << std::endl;
-
-            for (int i = 0; i < finalAssignments.size(); i++)
-            {
-                variableAssignments[abs(finalAssignments[i]) - 1] = (finalAssignments[i] > 0);
-            }
-
-            for (int i = 0; i < variableAssignments.size(); i++)
-            {
-                if (variableAssignments[i])
-                {
-                    std::cout << " " << (i + 1);
-                }
-                else
-                {
-                    std::cout << " " << -1 * (i + 1);
-                }
-
-                if ((i + 1) % 5 == 0)
-                {
-                    std::cout << "\n\n";
-                }
-            }
+                      << "1, " << DPLLCalls << ", " << duration << ", " << clauses.size() << ", " << numLiterals << ", " << currentTimeString << std::flush;
         }
         else
         {
-            std::cout << std::endl
-                      << "UNSAT";
-        }
+            std::time_t currentTime = std::time(0);
 
-        std::cout << "\n\n---------  PERFORMANCE  --------\n\n";
-        std::cout << "Number of times splitting rule applied: " << DPLLCalls;
+            // Convert the current time to a string
+            std::string currentTimeString = std::ctime(&currentTime);
+            std::cout << std::endl
+                      << "0, " << DPLLCalls << ", " << duration << ", " << clauses.size() << ", " << numLiterals << ", " << currentTimeString << std::flush;
+        }
     }
 
 private:
     HeuristicType heuristic;
-    int DPLLCalls;
 
     std::vector<int> DPLL(std::vector<std::set<int>> clauses, std::vector<int> assignments, int numLiterals)
     {
         DPLLCalls++;
 
-        PureLiteralElimination(clauses, assignments);
+        if (heuristic == HeuristicType::JW)
+        {
+            // PureLiteralElimination(clauses, assignments);
+        }
+        
         UnitClausePropagation(clauses, assignments);
 
         if (clauses.empty())
@@ -117,7 +146,7 @@ private:
         }
 
         int propAssigned = SelectProp(clauses, assignments, numLiterals);
-        
+
         // std::string newBranchPath = branchPath + " L";
         // int propAssigned = propSelected * truthValueAssignment;
 
@@ -152,7 +181,7 @@ private:
     {
         int truthValues[] = {-1, 1};
         int randomIndex = GenerateRandomNumber(1, 100);
-        return truthValues[randomIndex%2];
+        return truthValues[randomIndex % 2];
     }
 
     int SelectProp(std::vector<std::set<int>> clauses, std::vector<int> assignments, int numLiterals)
@@ -170,7 +199,7 @@ private:
             {
                 prop = RandomDecisionHeuristic(numLiterals, assignments);
             }
-            return truthValueAssignment*prop;
+            return truthValueAssignment * prop;
         }
         else if (heuristic == HeuristicType::JW)
         {
@@ -263,7 +292,7 @@ private:
         return selectedProp;
     }
 
-
+    // Function to select literal using Jeroslow-Wang method
     int JWHeuristic(std::vector<std::set<int>> clauses, int numLiterals)
     {
         std::map<int, float> jwFunctionMap;
@@ -271,12 +300,12 @@ private:
         for (std::set<int> clause : clauses)
         {
             int size = clause.size();
-                
+
             for (auto iter = clause.begin(); iter != clause.end(); iter++)
             {
                 float jwValue = pow(2, -1 * size);
 
-                if(jwFunctionMap.count(*iter))
+                if (jwFunctionMap.count(*iter))
                 {
                     jwFunctionMap[*iter] += jwValue;
                 }
@@ -419,6 +448,7 @@ private:
         return selectedProp;
     }
 
+
     int GenerateRandomNumber(int min, int max)
     {
         std::random_device randomDevice;
@@ -445,13 +475,11 @@ private:
             }
         }
 
-        // Identify pure literals (those with the same polarity in all occurrences)
         for (const auto &pair : literalCounts)
         {
             int literal = pair.first;
             int count = pair.second;
 
-            // If the literal always appears with the same polarity, it's a pure literal
             if (!(literalCounts[literal] && literalCounts[-literal]))
             {
                 pureLiterals.insert(literal);
@@ -460,6 +488,7 @@ private:
 
         for (int pureLiteral : pureLiterals)
         {
+           // std::cout<<"Pure literal eliminated - "<<pureLiteral<<std::endl;
             assignments.push_back(pureLiteral);
             clauses = AssignPropAndSimplifyClauses(clauses, pureLiteral);
         }
@@ -528,98 +557,97 @@ private:
     }
 };
 
-int main()
+std::vector<std::set<int>> GenerateRandom3Clauses(int numLiterals, int numClauses, int randomSeed)
 {
-    std::ifstream fin;
-    std::string filename;
-    std::cout << "Enter name of DIMACS file : " << std::endl;
-    std::cin >> filename;
+    std::vector<std::set<int>> clauses(numClauses);
+    int numLiteralsInClause = 3;
 
+    std::mt19937 rng(randomSeed);
+    std::uniform_int_distribution<int> literalDistribution(1, numLiterals);
+    std::uniform_int_distribution<int> equalDistribution(1, 100);
 
-    fin.open(filename);
-    
-    if (!fin)
+    for (int i = 0; i < numClauses; i++)
     {
-        std::cout<<"\nFile open error!";
-        exit(1);
-    }
+        std::set<int> tempClause;
+        std::set<int> clause;
 
-    std::string word1;
-   
-    fin >> word1;
-    
-    while (word1 != "p")
-    {
-        fin >> word1;
-    }
-
-    std::string problemFormat;
-
-    fin>>problemFormat;
-
-    if (toLowerString(problemFormat) != "cnf")
-    {
-      std::cout<<"\nInvalid problem format!!";
-      exit(1);   
-    }
-
-    int literals;
-    int rows;
-    
-    fin >> literals;
-    fin >> rows;
-    std::cout << "\n\nNo of propositions - " << literals << std::endl;
-    std::cout << "No of clauses - " << rows << std::endl;
-
-    std::vector<std::set<int>> clauses(rows);
-
-    int num;
-    for (int i = 0; i < rows; i++)
-    {
-        fin >> num;
-        while (num != 0)
+        while (tempClause.size() < numLiteralsInClause)
         {
-            clauses[i].insert(num);
-            fin >> num;
+            int randomLiteral = literalDistribution(rng);
+            // randomLiteral = (equalDistribution(rng) % 2 == 0) ? randomLiteral : -1 * randomLiteral;
+            tempClause.insert(randomLiteral);
         }
+
+        for (auto iter = tempClause.begin(); iter != tempClause.end(); iter++)
+        {
+            int literal = (equalDistribution(rng) % 2 == 0) ? *iter : -1 * (*iter);
+            clause.insert(literal);
+        }
+
+        clauses[i] = clause;
     }
 
-    int userInputHeuristic;
-    std::cout << "\n\nSelect heuristic (1 - Random, 2 - Two-Clause, 3 - Jeroslow-Wang):\n";
-    std::cin >> userInputHeuristic;
+    return clauses;
+}
 
-    switch (userInputHeuristic)
+void PrintClauses(std::vector<std::set<int>> clauses)
+{
+    std::cout << std::endl;
+    for (std::set<int> clause : clauses)
     {
-    case HeuristicType::RANDOM:
-    {
-        NaiveDPLLSolver randomSolver(HeuristicType::RANDOM);
-        randomSolver.SolveSAT(clauses, literals);
-        std::cout << std::endl << std::endl;
-        break;
+        for (int literal : clause)
+        {
+            std::cout << literal << " ";
+        }
+
+        std::cout << std::endl;
     }
+}
 
-    case HeuristicType::TWO_CLAUSE:
+NaiveDPLLSolver *globalObjectPtr = nullptr;
+int64_t globalTimeoutDuration;
+
+void handleSIGTERM(int signum)
+{
+
+    if (globalObjectPtr != nullptr)
     {
-        NaiveDPLLSolver twoClauseSolver(HeuristicType::TWO_CLAUSE);
-        twoClauseSolver.SolveSAT(clauses, literals);
         std::cout << std::endl
-             << std::endl;
-        break;
+                  << "2, " << globalObjectPtr->DPLLCalls << ", " << globalTimeoutDuration * 1000 << ", " << globalObjectPtr->clauseCount << ", " << globalObjectPtr->literalCount << std::flush;
     }
+    exit(signum);
+}
 
-    case HeuristicType::JW:
+int main(int argc, char *argv[])
+{
+    signal(SIGTERM, handleSIGTERM);
+
+    if (argc != 6)
     {
-        NaiveDPLLSolver jwSolver(HeuristicType::JW);
-        jwSolver.SolveSAT(clauses, literals);
-        std::cout << std::endl
-             << std::endl;
-        break;
+        std::cerr << "Usage: " << argv[0] << " <iteration_number> <heuristic> <number_of_variables> <ratio> <timeout_duration>" << std::endl;
+        return 1;
     }
 
-    default:
-        std::cout << "Invalid Heuristic!! Try again!";
-        exit(1);
-    }
+    int iterationNumber = std::atoi(argv[1]);
+    HeuristicType heuristic = (HeuristicType)std::atoi(argv[2]);
+    int numVariables = std::atoi(argv[3]);
+    float LNratio = std::atof(argv[4]);
+    globalTimeoutDuration = std::atoi(argv[5]);
 
+    // int numIterations = 1;
+    // int numVariables = 4;
+    // HeuristicType heuristic = (HeuristicType) 2;
+    // float LNratio = 2;
+
+    std::mt19937 rng(iterationNumber * numVariables * LNratio);
+    std::uniform_int_distribution<int> seedGenerator(1, numVariables * iterationNumber);
+
+    int numClauses = (int)(LNratio * numVariables);
+    std::vector<std::set<int>> clauses = GenerateRandom3Clauses(numVariables, numClauses, seedGenerator(rng));
+    // Printing clauses
+    // PrintClauses(clauses);
+    NaiveDPLLSolver randomSolver(heuristic);
+    globalObjectPtr = &randomSolver;
+    randomSolver.SolveSAT(clauses, numVariables);
     return 0;
 }

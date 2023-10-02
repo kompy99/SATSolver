@@ -1,8 +1,11 @@
+CS 8803: Logic in Computer Science  
+Interim Project Report
+
 **Varun Komperla  
 vkomperla3@gatech.edu  
 GT ID: xx3926404**
 
-I confirm that I have adhered to the Georgia Tech honor code.
+I confirm that I have adhered to the Georgia Tech honor code!
 
 # Table of Contents
 
@@ -155,14 +158,27 @@ For a given property type (Color, Beverage, etc.), we need to ensure that each v
 
 Also, for a given house, we need to ensure that **at least** and **at most** one value of a property type is true.
 
-An example of these constraints for the color property are given below:
+Given the variables for [houses-colors](#variables-for-house---color), we have the following constraints for the color red:
 
-Given the variables for [houses-colors](#variables-for-house---color), we have the following constraints in DIMACS CNF format (each line is a separate clause):
+With (1, clr_r), (2,clr_r), (3, clr_r), (4, clr_r), (5, clr_r), (1, clr_w), (1, clr_g), (1, clr_y) and (1, clr_b)   as the propositions, we have,
 
-- At least one house is color red:  
+
+**At least one house is color red**
+
+$(1, clr\_r) \cup (2, clr\_r) \cup (3, clr\_r) \cup (4, clr\_r) \cup (5, clr\_r)$
+
+In DIMACS form:  
 1 6 11 16 21 0  
 
-- At most one house is color red:  
+**At most one house is color red**
+
+$\overline{((1, clr\_r) \cap (2, clr\_r))} \cap \overline{((1, clr\_r) \cap (3, clr\_r))} \cap \overline{((1, clr\_r) \cap (4, clr\_r))} \cap \overline{((1, clr\_r) \cap (5, clr\_r))} \cap \overline{((2, clr\_r) \cap (3, clr\_r))} \cap \overline{((2, clr\_r) \cap (4, clr\_r))} \cap \overline{((2, clr\_r) \cap (5, clr\_r))} \cap \overline{((3, clr\_r) \cap (4, clr\_r))} \cap \overline{((3, clr\_r) \cap (5, clr\_r))} \cap \overline{((4, clr\_r) \cap (5, clr\_r))}$
+
+Applying De Morgan's law, we get:
+
+$(\; \overline{(1, clr\_r)} \; \cup \; \overline{(2, clr\_r)} \; ) \; \; \cap \; \;  (\; \overline{(1, clr\_r)} \; \cup \; \overline{(3, clr\_r)} \; ) \; \; \cap \; \;  (\; \overline{(1, clr\_r)} \; \cup \; \overline{(4, clr\_r)} \; ) \; \; \cap \; \;  (\; \overline{(1, clr\_r)} \; \cup \; \overline{(5, clr\_r)} \; ) \; \; \cap \; \;  (\; \overline{(2, clr\_r)} \; \cup \; \overline{(3, clr\_r)} \; ) \; \; \cap \; \;  (\; \overline{(2, clr\_r)} \; \cup \; \overline{(4, clr\_r)} \; ) \; \; \cap \; \;  (\; \overline{(2, clr\_r)} \; \cup \; \overline{(5, clr\_r)} \; ) \; \; \cap \; \;  (\; \overline{(3, clr\_r)} \; \cup \; \overline{(4, clr\_r)} \; ) \; \; \cap \; \;  (\; \overline{(3, clr\_r)} \; \cup \; \overline{(5, clr\_r)} \; ) \; \; \cap \; \;  (\; \overline{(4, clr\_r)} \; \cup \; \overline{(5, clr\_r)} \; )$
+
+In DIMACS form:  
 -1 -6 0  
 -1 -11 0  
 -1 -16 0  
@@ -174,10 +190,22 @@ Given the variables for [houses-colors](#variables-for-house---color), we have t
 -11 -21 0  
 -16 -21 0  
 
-- House #1 is at least one color:  
+**House #1 is at least one color**
+
+$(1, clr\_r) \cup (1, clr\_w) \cup (1, clr\_g) \cup (1, clr\_y) \cup (1, clr\_b)$
+
+In DIMACS form:  
 1 2 3 4 5 0  
 
-- House #1 is at most one color:  
+**House #1 is at most one color**
+
+$\overline{((1, clr\_r) \cap (1, clr\_w))} \cap \overline{((1, clr\_r) \cap (1, clr\_g))} \cap \overline{((1, clr\_r) \cap (1, clr\_y))} \cap \overline{((1, clr\_r) \cap (1, clr\_b))} \cap \overline{((1, clr\_w) \cap (1, clr\_g))} \cap \overline{((1, clr\_w) \cap (1, clr\_y))} \cap \overline{((1, clr\_w) \cap (1, clr\_b))} \cap \overline{((1, clr\_g) \cap (1, clr\_y))} \cap \overline{((1, clr\_g) \cap (1, clr\_b))} \cap \overline{((1, clr\_y) \cap (1, clr\_b))}$
+
+Applying De Morgan's law, we get:
+
+$(\; \overline{(1, clr\_r)} \; \cup \; \overline{(1, clr\_w)} \; ) \; \; \cap \; \;  (\; \overline{(1, clr\_r)} \; \cup \; \overline{(1, clr\_g)} \; ) \; \; \cap \; \;  (\; \overline{(1, clr\_r)} \; \cup \; \overline{(1, clr\_y)} \; ) \; \; \cap \; \;  (\; \overline{(1, clr\_r)} \; \cup \; \overline{(1, clr\_b)} \; ) \; \; \cap \; \;  (\; \overline{(1, clr\_w)} \; \cup \; \overline{(1, clr\_g)} \; ) \; \; \cap \; \;  (\; \overline{(1, clr\_w)} \; \cup \; \overline{(1, clr\_y)} \; ) \; \; \cap \; \;  (\; \overline{(1, clr\_w)} \; \cup \; \overline{(1, clr\_b)} \; ) \; \; \cap \; \;  (\; \overline{(1, clr\_g)} \; \cup \; \overline{(1, clr\_y)} \; ) \; \; \cap \; \;  (\; \overline{(1, clr\_g)} \; \cup \; \overline{(1, clr\_b)} \; ) \; \; \cap \; \;  (\; \overline{(1, clr\_y)} \; \cup \; \overline{(1, clr\_b)} \; )$
+
+In DIMACS form:  
 -1 -2 0  
 -1 -3 0  
 -1 -4 0  
@@ -188,6 +216,8 @@ Given the variables for [houses-colors](#variables-for-house---color), we have t
 -3 -4 0  
 -3 -5 0  
 -4 -5 0  
+
+Similarly, the same constraints can be created for all properties and all houses.
 
 #### Implication-type constraints
 
@@ -372,7 +402,7 @@ To build and run the SAT solver on the Einstein Puzzle DIMACS file:
         > No of propositions - 125
         > No of clauses - 793
 
-        > Select heuristic (1 - Random, 2 - Two-Clause):
+        > Select heuristic (1 - Random, 2 - Two-Clause, 3 - Jeroslow-Wang):
           2
 
 ## Output
@@ -396,8 +426,8 @@ An example output obtained from running the SAT solver above on the Einstein DIM
     No of clauses - 793
 
 
-    Select heuristic (1 - Random, 2 - Two-Clause):
-    1
+    Select heuristic (1 - Random, 2 - Two-Clause, 3 - Jeroslow-Wang):
+    3
 
     SAT
     -1 -2 -3 4 -5
@@ -454,7 +484,7 @@ An example output obtained from running the SAT solver above on the Einstein DIM
 
     ---------  PERFORMANCE  --------
 
-    Number of times splitting rule applied: 1647
+    Number of times splitting rule applied: 98
 
 **Note:** The number for "splitting rule applied" will vary in each run as there is some randomness involved for the heuristics.
 

@@ -31,6 +31,7 @@ I confirm that I have adhered to the Georgia Tech honor code!
   - [Build and Run](#build-and-run)
     - [EinsteinCNF.cpp](#einsteincnfcpp)
     - [SAT.cpp](#satcpp)
+    - [SatExp.cpp](#satexpcpp)
   - [Output](#output)
 - [Solution](#solution)
 
@@ -404,6 +405,10 @@ To build and run the SAT solver on the Einstein Puzzle DIMACS file:
 
         > Select heuristic (1 - Random, 2 - Two-Clause, 3 - Jeroslow-Wang):
           2
+
+### SatExp.cpp
+
+This file is similar to [*SAT.cpp*](/src/SAT.cpp). It has been modified to be able to run performance tests for each of the heuristics on random formulae generated according to the fixed-clause-length model. It takes some command line arguments, whose details can be found in the `main()` function of the file.
 
 ## Output
 
